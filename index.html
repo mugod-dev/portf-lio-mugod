@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="MUGOD EDITOR: edição de Reels, TikToks e anúncios para marcas e criadores.">
+<meta property="og:title" content="MUGOD EDITOR · Reels e anúncios">
+<meta property="og:description" content="Vídeos curtos que prendem no primeiro segundo.">
+<meta property="og:image" content="foto.jpg">
+<meta name="theme-color" content="#09070d">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%238b5cf6'/%3E%3Cpath d='M13 10l9 6-9 6z' fill='%23f5f1fa'/%3E%3C/svg%3E">
+<title>Portfólio Reels e Anúncios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* Layout: hero dividido (texto à esquerda, carrossel vertical 9:16 à direita) → grade de reels → sobre → processo → contato. Tema único escuro (marca). */
+:root{
+  --bg:#09070d; --bg2:#100c16; --card:#16111e; --line:#271f33; --hair:#1a1422; --edge:#3a2f4a;
+  --ink:#f5f1fa; --soft:#d9d2e3; --mut:#9f96ad;
+  --roxo:#8b5cf6; --roxo2:#a78bfa; --roxo-glow:rgba(139,92,246,.22);
+  --ouro:#d9b45a; --ouro2:#ecd08a; --on-ouro:#150f04;
+  --disp:"Bricolage Grotesque","Arial Black",Impact,sans-serif;
+  --sans:"Manrope",-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  --gut:clamp(16px,4vw,48px);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:40;background:var(--bg)}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--ouro);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(var(--gut),env(safe-area-inset-left,0px));padding-right:max(var(--gut),env(safe-area-inset-right,0px))}
+section{padding-block:clamp(56px,8vw,104px)}
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+h1,h2,h3{text-wrap:balance;margin:0}
+.ouro{color:var(--ouro)}
+
+/* Botões */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 24px;border-radius:12px;border:0;background:var(--ouro);color:var(--on-ouro);font-weight:700;font-size:15px;transition:transform .2s var(--ease),background .2s,border-color .2s}
+.btn:hover{transform:translateY(-2px);background:var(--ouro2)}
+.btn.line{background:transparent;color:var(--ink);border:1.5px solid var(--edge)}
+.btn.line:hover{border-color:var(--roxo2);background:transparent}
+
+/* Navbar */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:rgba(9,7,13,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--hair)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:12px}
+.brand{display:flex;align-items:center;gap:10px;font:800 clamp(19px,2.2vw,23px)/1 var(--disp);letter-spacing:-.01em}
+.brand b{color:var(--ouro);font-weight:800}
+.brand i{width:30px;height:30px;border-radius:9px;background:var(--roxo);display:grid;place-items:center;flex:none}
+.brand i::after{content:"";border-left:9px solid var(--ink);border-block:6px solid transparent;margin-left:3px}
+.nav nav{display:flex;align-items:center;gap:4px}
+.nav a.l{padding:10px 14px;border-radius:10px;font-weight:500;font-size:14px;color:var(--soft)}
+.nav a.l:hover{color:var(--ink);background:var(--hair)}
+.nav .btn{min-height:42px;padding:0 18px;font-size:14px;margin-left:8px;white-space:nowrap}
+.nav .btn .cel{display:none}
+.lang{display:flex;flex:none;margin-left:10px;padding:3px;border-radius:999px;border:1.5px solid var(--edge)}
+.lang button{min-width:38px;min-height:34px;padding:0 10px;border:0;border-radius:999px;background:transparent;font:500 12px/1 var(--mono);letter-spacing:.06em;color:var(--mut);transition:background .2s,color .2s}
+.lang button:hover{color:var(--ink)}
+.lang button[aria-pressed="true"]{background:var(--roxo);color:var(--ink)}
+
+/* Hero */
+.hero{padding-block:clamp(48px,7vw,96px) clamp(40px,6vw,72px);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;width:720px;height:720px;right:-200px;top:-180px;background:radial-gradient(closest-side,var(--roxo-glow),transparent);pointer-events:none}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,72px);align-items:center;position:relative}
+.hero .txt{min-width:0;position:relative;z-index:5}
+.rec{display:inline-flex;align-items:center;gap:10px}
+.rec::before{content:"";width:8px;height:8px;border-radius:50%;background:#e2445c;box-shadow:0 0 0 4px rgba(226,68,92,.18);animation:pisca 1.6s steps(2) infinite}
+@keyframes pisca{50%{opacity:.25}}
+.hero h1{font:800 clamp(42px,6.4vw,88px)/.98 var(--disp);letter-spacing:-.03em;margin-top:22px;max-width:12ch}
+.hero .sub{font-size:clamp(17px,1.7vw,20px);color:var(--soft);margin:22px 0 30px;max-width:44ch}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.specs{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:34px;padding-top:20px;border-top:1px solid var(--hair);font:500 12px/1 var(--mono);color:var(--mut);letter-spacing:.06em}
+.specs span::before{content:"▸ ";color:var(--roxo2)}
+
+/* Carrossel vertical */
+.show{display:flex;flex-direction:column;align-items:center;gap:22px;min-width:0}
+.stage{--w:min(300px,64vw);position:relative;width:100%;height:calc(var(--w)*16/9)}
+.slide{position:absolute;left:50%;top:0;width:var(--w);margin-left:calc(var(--w)/-2);transition:transform .6s var(--ease),opacity .6s,filter .6s;cursor:pointer}
+.slide[data-pos="0"]{z-index:3}
+.slide[data-pos="0"] .poster{box-shadow:0 24px 70px rgba(139,92,246,.28);border-color:var(--roxo)}
+.slide[data-pos="-1"]{transform:translateX(-46%) scale(.8) rotate(-5deg);filter:brightness(.45);z-index:2}
+.slide[data-pos="1"]{transform:translateX(46%) scale(.8) rotate(5deg);filter:brightness(.45);z-index:2}
+.slide[data-pos="x"]{opacity:0;pointer-events:none;transform:scale(.6)}
+.ctrl{display:flex;align-items:center;gap:14px}
+.arr{width:44px;height:44px;border-radius:50%;background:transparent;border:1.5px solid var(--edge);display:grid;place-items:center;font-size:18px;transition:background .2s,border-color .2s,color .2s}
+.arr:hover{background:var(--ouro);border-color:var(--ouro);color:var(--on-ouro)}
+.dots{display:flex;gap:6px}
+.dots button{width:8px;height:8px;padding:0;border:0;border-radius:5px;background:var(--edge);transition:width .3s,background .3s}
+.dots button[aria-current="true"]{width:22px;background:var(--ouro)}
+
+/* Poster 9:16 (capa de exemplo ou vídeo real) */
+.poster{position:relative;display:block;width:100%;max-width:100%;aspect-ratio:9/16;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--card);isolation:isolate}
+.poster.a{background:radial-gradient(90% 60% at 30% 15%,rgba(139,92,246,.55),transparent 70%),linear-gradient(165deg,#1d1330,#0b0811)}
+.poster.b{background:radial-gradient(80% 55% at 75% 20%,rgba(217,180,90,.32),transparent 70%),radial-gradient(70% 50% at 20% 95%,rgba(139,92,246,.4),transparent 70%),linear-gradient(180deg,#151019,#0a080d)}
+.poster.c{background:radial-gradient(100% 70% at 50% 0%,rgba(167,139,250,.35),transparent 70%),linear-gradient(200deg,#120d1b,#1c1426 60%,#0a080d)}
+.poster.ex::before{content:"";position:absolute;left:50%;top:30%;width:34%;aspect-ratio:1;margin-left:-17%;border-radius:50%;background:rgba(255,255,255,.07);z-index:-1}
+.poster.ex::after{content:"";position:absolute;left:50%;top:52%;width:76%;height:60%;margin-left:-38%;border-radius:46% 46% 0 0;background:rgba(255,255,255,.055);z-index:-1}
+.poster img,.poster video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1}
+.poster .tag{position:absolute;left:10px;top:10px;font:600 10.5px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:6px 8px;border-radius:7px;background:var(--roxo);color:var(--ink)}
+.poster .tag.anuncio{background:var(--ouro);color:var(--on-ouro)}
+.poster .leg{position:absolute;left:8%;right:8%;top:60%;text-align:center;font:800 clamp(15px,1.6vw,21px)/1.05 var(--disp);text-transform:uppercase;letter-spacing:-.01em;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.poster .leg b{display:block;color:var(--ouro);font-size:1.35em}
+.poster .tc{position:absolute;right:10px;bottom:10px;font:500 11px/1 var(--mono);padding:5px 7px;border-radius:6px;background:rgba(9,7,13,.7);color:var(--soft)}
+.poster .play{position:absolute;left:50%;top:50%;width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:50%;background:rgba(9,7,13,.55);border:2px solid var(--ink);display:grid;place-items:center;opacity:0;transform:scale(.9);transition:opacity .25s,transform .25s,background .25s,border-color .25s}
+.poster .play::after{content:"";border-left:14px solid var(--ink);border-block:9px solid transparent;margin-left:4px}
+
+/* Trabalhos */
+.head{display:flex;justify-content:space-between;align-items:end;gap:20px 32px;flex-wrap:wrap;margin-bottom:clamp(24px,3vw,36px)}
+.head > div{min-width:0}
+h2.sec{font:800 clamp(32px,4.4vw,54px)/1 var(--disp);letter-spacing:-.025em;margin-top:14px}
+.head p{color:var(--mut);margin:12px 0 0;max-width:52ch}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{min-height:42px;padding:0 18px;border-radius:999px;background:transparent;border:1.5px solid var(--edge);font-weight:500;font-size:14px;color:var(--soft);transition:border-color .2s,background .2s,color .2s}
+.chip:hover{border-color:var(--roxo2)}
+.chip[aria-pressed="true"]{background:var(--roxo);border-color:var(--roxo);color:var(--ink)}
+.chip small{font:500 11px var(--mono);opacity:.7;margin-left:6px}
+.grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(12px,1.8vw,22px)}
+.item{display:flex;flex-direction:column;gap:10px;background:none;border:0;padding:0;text-align:left;min-width:0}
+.item .poster{transition:transform .35s var(--ease),border-color .25s}
+.item:hover .poster{transform:translateY(-4px);border-color:var(--roxo)}
+.item:hover .play,.slide[data-pos="0"]:hover .play{opacity:1;transform:none}
+.item:hover .play{background:var(--ouro);border-color:var(--ouro)}
+.item:hover .play::after{border-left-color:var(--on-ouro)}
+.item .t3{display:block;font-size:15.5px;font-weight:700;line-height:1.3;min-height:2.6em}
+.item .cl{display:block;margin-top:2px;font-size:13px;color:var(--mut)}
+.feito{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+.feito span{padding:4px 8px;border-radius:999px;background:var(--roxo-glow);color:var(--roxo2);font:500 11.5px/1.2 var(--sans);white-space:nowrap}
+#vfeito .feito{margin-top:12px}
+
+/* Sobre */
+.about{background:var(--bg2);border-block:1px solid var(--hair)}
+.about .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(28px,5vw,72px);align-items:center}
+.foto{position:relative;aspect-ratio:4/5;max-width:100%;border-radius:18px;border:1px solid var(--line);background:radial-gradient(80% 60% at 50% 20%,rgba(139,92,246,.4),transparent),var(--card);display:grid;place-items:center;font:800 clamp(64px,10vw,120px)/1 var(--disp);color:var(--ouro)}
+.foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 25%;border-radius:18px}
+.about .t{min-width:0}
+.about .t p{color:var(--soft);max-width:58ch}
+.about .t p.lead{font:700 clamp(22px,2.4vw,28px)/1.2 var(--disp);color:var(--ink);margin:22px 0 6px}
+.tools{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
+.tools .eyebrow{margin-right:6px}
+.tool{padding:7px 12px;border-radius:999px;border:1.5px solid var(--edge);font-size:13px;font-weight:600;color:var(--soft)}
+.about .t p.fecho{margin:26px 0 0;padding-left:16px;border-left:2px solid var(--ouro);font:700 clamp(18px,1.8vw,21px)/1.35 var(--disp);color:var(--ink)}
+
+/* Processo */
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;counter-reset:s;list-style:none;margin:0;padding:0}
+.steps li{padding:22px;border-radius:16px;border:1px solid var(--line);background:var(--card);counter-increment:s;min-width:0}
+.steps li::before{content:counter(s,decimal-leading-zero);font:500 13px/1 var(--mono);color:var(--roxo2)}
+.steps h3{font:800 20px/1.2 var(--disp);margin:14px 0 8px}
+.steps p{margin:0;color:var(--mut);font-size:14.5px}
+
+/* Contato */
+.contact{background:var(--bg2);border-top:1px solid var(--hair);position:relative;overflow:hidden}
+.contact::before{content:"";position:absolute;width:700px;height:500px;left:50%;bottom:-320px;margin-left:-350px;background:radial-gradient(closest-side,var(--roxo-glow),transparent);pointer-events:none}
+.contact .wrap{position:relative;text-align:center}
+.contact h2{font:800 clamp(36px,6vw,76px)/1 var(--disp);letter-spacing:-.03em;max-width:15ch;margin:16px auto 0}
+.contact p.s{color:var(--soft);margin:18px auto 34px;max-width:46ch}
+.canais{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:780px;margin:0 auto}
+.canal{min-width:0;padding:22px;border-radius:16px;border:1px solid var(--line);background:var(--card);display:flex;flex-direction:column;gap:16px;text-align:left;transition:border-color .2s,transform .2s var(--ease)}
+.canal:hover{border-color:var(--roxo);transform:translateY(-2px)}
+.ct-top{display:flex;align-items:center;gap:12px}
+.ic{width:40px;height:40px;flex:none;border-radius:12px;display:grid;place-items:center;background:var(--roxo-glow);color:var(--roxo2)}
+.canal strong{display:block;font-weight:600;font-size:17px;line-height:1.3;overflow-wrap:anywhere;user-select:all}
+.ct-acoes{display:flex;gap:8px;margin-top:auto;padding-top:16px;border-top:1px solid var(--line)}
+.ct-btn,.copy{min-height:40px;padding:0 14px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;gap:6px;font-weight:600;font-size:13.5px;white-space:nowrap;transition:background .2s,border-color .2s,color .2s}
+.ct-btn{flex:1;background:var(--ouro);color:var(--on-ouro)}
+.ct-btn:hover{background:var(--ouro2)}
+.copy{flex:none;border:1.5px solid var(--edge);background:transparent;color:var(--soft)}
+.ct-acoes .copy:only-child{flex:1}
+.copy:hover{border-color:var(--roxo2);color:var(--ink)}
+.copy.ok{border-color:var(--ouro);color:var(--ouro)}
+
+footer{padding-block:26px;border-top:1px solid var(--hair);font-size:13px;color:var(--mut)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* Player */
+.fab{display:none;position:fixed;z-index:45;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));width:56px;height:56px;border-radius:50%;place-items:center;background:var(--ouro);color:var(--on-ouro);box-shadow:0 10px 30px rgba(0,0,0,.45),0 0 0 4px rgba(217,180,90,.18);transition:transform .2s var(--ease)}
+.fab:active{transform:scale(.94)}
+body.vendo{overflow:hidden}
+body.vendo .fab{display:none}
+.viewer{position:fixed;inset:0;z-index:50;background:rgba(5,4,8,.97);display:grid;place-items:center;padding:max(20px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(20px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.vbox{position:relative;width:min(380px,100%);display:flex;flex-direction:column;gap:14px}
+.vbox .media{width:100%;max-height:78vh;aspect-ratio:9/16;border-radius:18px;overflow:hidden;background:var(--card);border:1px solid var(--line);display:grid;place-items:center;text-align:center}
+.vbox .media video{width:100%;height:100%;object-fit:contain;background:#000}
+.vbox .vazio{padding:28px;color:var(--mut);font-size:14px}
+.vbox .vazio b{display:block;font:800 22px/1.15 var(--disp);color:var(--ink);margin-bottom:10px}
+.vbox h3{font-size:18px;font-weight:700}
+.vbox .meta{font-size:13px;color:var(--mut)}
+.fechar{position:absolute;top:-8px;right:-8px;width:44px;height:44px;border-radius:50%;border:0;background:var(--card);font-size:20px;z-index:2;transition:background .2s,color .2s}
+.fechar:hover{background:var(--ouro);color:var(--on-ouro)}
+
+@media (max-width:900px){
+  .hero .wrap,.about .wrap{grid-template-columns:1fr}
+  .hero h1{max-width:14ch}
+  .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .foto{max-width:360px}
+}
+@media (max-width:640px){
+  .nav a.l{display:none}
+  .nav .wrap{gap:8px}
+  .brand{font-size:17px;gap:8px}
+  .brand i{width:26px;height:26px;border-radius:8px}
+  .nav .btn{margin-left:0;padding:0 12px;font-size:13px;min-height:38px}
+  .nav .btn .pc{display:none}
+  .nav .btn .cel{display:inline}
+  .lang{margin-left:6px}
+  .lang button{min-width:30px;min-height:30px;padding:0 6px;font-size:11px}
+  .grid{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:calc(-1 * max(var(--gut),env(safe-area-inset-left,0px)));padding-inline:max(var(--gut),env(safe-area-inset-left,0px));scroll-padding-inline:max(var(--gut),env(safe-area-inset-left,0px));padding-bottom:6px;scrollbar-width:none}
+  .grid::-webkit-scrollbar{display:none}
+  .grid .item{flex:0 0 66%;scroll-snap-align:start}
+  .foto{max-width:240px}
+  .steps{grid-template-columns:1fr}
+  .canais{grid-template-columns:1fr}
+  .fab{display:grid}
+  footer{padding-bottom:calc(26px + 72px)}
+  .poster .leg{font-size:15px}
+  .slide[data-pos="-1"]{transform:translateX(-46%) scale(.78) rotate(-5deg)}
+  .slide[data-pos="1"]{transform:translateX(46%) scale(.78) rotate(5deg)}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+}
+body{margin:0}
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#topo" aria-label="Início" data-ta="inicio"><i aria-hidden="true"></i><span data-marca></span></a>
+    <nav aria-label="Principal" data-ta="principal">
+      <a class="l" href="#trabalhos" data-t="navTrab">Trabalhos</a>
+      <a class="l" href="#sobre" data-t="navSobre">Sobre</a>
+      <a class="l" href="#processo" data-t="navProc">Processo</a>
+      <a class="btn" href="#contato" data-whats data-t="orcamento"><span class="pc">Pedir orçamento</span><span class="cel">Orçamento</span></a>
+      <div class="lang" role="group" aria-label="Idioma / Language">
+        <button type="button" data-lang="pt" aria-pressed="true" aria-label="Português">PT</button>
+        <button type="button" data-lang="en" aria-pressed="false" aria-label="English">EN</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="topo">
+  <section class="hero">
+    <div class="wrap">
+      <div class="txt">
+        <span class="eyebrow rec" data-t="selo">Editor de Reels e anúncios</span>
+        <h1 data-t="h1">Vídeos curtos que prendem <span class="ouro">no primeiro segundo.</span></h1>
+        <p class="sub" data-t="sub">Edito Reels, TikToks e anúncios para marcas e criadores. Corte rápido, legenda que guia o olho e motion que segura a atenção até o fim.</p>
+        <div class="ctas">
+          <a class="btn" href="#trabalhos" data-t="verTrab">Ver trabalhos</a>
+          <a class="btn line" href="#contato" data-whats data-t="conversar">Vamos conversar</a>
+        </div>
+        <div class="specs" aria-label="Formatos" data-ta="formatos">
+          <span>9:16 · 1080×1920</span><span data-t="dur">15 a 60 s</span><span>Reels · TikTok · Shorts · Ads</span>
+        </div>
+      </div>
+      <div class="show" aria-label="Vídeos em destaque" data-ta="destaque">
+        <div class="stage" id="stage"></div>
+        <div class="ctrl">
+          <button class="arr" id="prev" aria-label="Vídeo anterior" data-ta="anterior">←</button>
+          <div class="dots" id="dots"></div>
+          <button class="arr" id="next" aria-label="Próximo vídeo" data-ta="proximo">→</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="trabalhos">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <span class="eyebrow" data-t="portfolio">Portfólio</span>
+          <h2 class="sec" data-t="recentes">Trabalhos recentes</h2>
+          <p data-t="toque">Toque ou clique em um vídeo para assistir com som.</p>
+        </div>
+        <div class="chips" role="group" aria-label="Filtrar vídeos" data-ta="filtrar" id="chips">
+          <button class="chip" data-f="todos" aria-pressed="true"><span data-t="todos">Todos</span><small></small></button>
+          <button class="chip" data-f="reels" aria-pressed="false">Reels<small></small></button>
+          <button class="chip" data-f="anuncio" aria-pressed="false"><span data-t="anuncios">Anúncios</span><small></small></button>
+        </div>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section id="sobre" class="about">
+    <div class="wrap">
+      <div class="foto" id="foto">?</div>
+      <div class="t">
+        <span class="eyebrow" data-t="sobre">Sobre</span>
+        <h2 class="sec" data-t="quem">Quem está por trás dos vídeos?</h2>
+        <p class="lead" data-t="souo">Sou o <span class="ouro">Murillo</span>.</p>
+        <p data-t="p1">Sou editor de vídeo, apaixonado por transformar ideias e gravações em conteúdos que prendem a atenção e se conectam com o público.</p>
+        <p data-t="p2">Comecei aos 22 anos, editando vídeos para criadores de conteúdo de diferentes nichos. Desde então, venho aprimorando minhas habilidades e desenvolvendo um olhar criativo para cada projeto.</p>
+        <p data-t="p3">Trabalho com ferramentas como Adobe Premiere Pro, After Effects e CapCut, adaptando cada edição à identidade, às referências e aos objetivos de cada cliente.</p>
+        <div class="tools" aria-label="Ferramentas" data-ta="ferr">
+          <span class="eyebrow" data-t="ferr">Ferramentas</span>
+          <span class="tool">Premiere Pro</span><span class="tool">After Effects</span><span class="tool">CapCut</span>
+        </div>
+        <p class="fecho" data-t="fecho">Você foca em criar. <span class="ouro">Eu cuido de transformar seu conteúdo em um vídeo profissional.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="processo">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <span class="eyebrow" data-t="como">Como funciona</span>
+          <h2 class="sec" data-t="bruto">Do bruto ao post</h2>
+        </div>
+      </div>
+      <ol class="steps">
+        <li data-t="s1"><h3>Arquivos no Drive</h3><p>Você grava e compartilha os arquivos pelo Google Drive, sem precisar cortar nada.</p></li>
+        <li data-t="s2"><h3>Referências</h3><p>Alinhamos o objetivo do vídeo, o público e as referências de estilo que você gosta.</p></li>
+        <li data-t="s3"><h3>Edição</h3><p>Cortes, legenda, zoom, motion e efeitos sonoros. Se precisar, também crio o título e a thumbnail.</p></li>
+        <li data-t="s4"><h3>Entrega final</h3><p>Você revisa, pede os ajustes e recebe o vídeo pronto para postar.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="contato" class="contact">
+    <div class="wrap">
+      <span class="eyebrow" data-t="contato">Contato</span>
+      <h2 data-t="bora">Bora fazer seu próximo <span class="ouro">vídeo?</span></h2>
+      <p class="s" data-t="chama">Me chama no canal que preferir e me conta o que você precisa. Respondo no mesmo dia.</p>
+      <div class="canais" id="canais"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 <span data-marca-texto></span></span>
+    <span data-t="rodape">Edição de vídeos curtos · Reels e anúncios</span>
+  </div>
+</footer>
+
+<a class="fab" href="#contato" data-whats aria-label="Conversar no WhatsApp" data-ta="fab">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 18.8L4 20z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.6-2-.9-.8.8a4 4 0 0 1-2-2l.8-.8-.9-2L9 9.5z"/></svg>
+</a>
+
+<div class="viewer" id="viewer" hidden role="dialog" aria-modal="true" aria-labelledby="vtit">
+  <div class="vbox">
+    <button class="fechar" id="fechar" aria-label="Fechar" data-ta="fechar">×</button>
+    <div class="media" id="vmedia"></div>
+    <div><h3 id="vtit"></h3><div class="meta" id="vmeta"></div><div id="vfeito"></div></div>
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   EDITE AQUI — tudo que muda no site fica neste bloco
+   ========================================================= */
+const MARCA = { nome: 'MUGOD', destaque: 'EDITOR' };  // ex.: { nome: 'MURILLO', destaque: 'EDIT' }
+const FOTO = 'foto.jpg';                                   // ex.: 'foto.jpg' (vazio = mostra a inicial)
+
+const CONTATOS = [
+  { rotulo: 'WhatsApp',  valor: '(11) 98681-8700',            link: 'https://wa.me/5511986818700?text=' + encodeURIComponent('Olá! Vi seu portfólio e quero um orçamento de edição de vídeo.'),
+                                                              link_en: 'https://wa.me/5511986818700?text=' + encodeURIComponent("Hi! I saw your portfolio and I'd like a quote for video editing.") },
+  { rotulo: 'Instagram', valor: '@murillocrz',                link: 'https://www.instagram.com/murillocrz/' },
+  { rotulo: 'Discord',   valor: 'mugod',                      link: 'https://discord.com/users/394116807281082373' },
+  { rotulo: 'E-mail',    valor: 'murilloalves2002@gmail.com', link: '', rotulo_en: 'Email' }
+];
+
+/* tipo: 'reels' ou 'anuncio' · video: arquivo .mp4 · capa: imagem (opcional)
+   titulo_en / cliente_en: o mesmo texto em inglês (aparece quando o visitante escolhe EN)
+   legenda: [texto normal, palavra em dourado] aparece na capa de exemplo */
+/* o que você fez nos vídeos (aparece em etiquetas). Para um vídeo diferente, troque FEITO por ['Cortes', 'Thumbnail', ...] */
+const FEITO = ['Cortes', 'Legendas dinâmicas', 'Efeitos sonoros', 'Motion'];
+const FEITO_EN = ['Cuts', 'Dynamic captions', 'Sound effects', 'Motion']; // mesma ordem do FEITO, em inglês
+
+const VIDEOS = [
+  { titulo: 'Sistema de gestão para clínicas', cliente: 'Software · Anúncio',          tipo: 'anuncio', duracao: '00:20', video: 'videos/clinica.mp4', capa: 'videos/capa_clinica.jpg', feito: FEITO,
+    titulo_en: 'Management software for clinics', cliente_en: 'Software · Ad' },
+  { titulo: 'Reinauguração da loja',           cliente: 'Loja de roupas · Varejo',      tipo: 'anuncio', duracao: '00:21', video: 'videos/img0523.mp4', capa: 'videos/capa_img0523.jpg', feito: FEITO,
+    titulo_en: 'Store grand reopening', cliente_en: 'Clothing store · Retail' },
+  { titulo: 'Sinais de alerta no corpo',       cliente: 'Academia · Saúde',             tipo: 'reels',   duracao: '00:37', video: 'videos/juntos.mp4',  capa: 'videos/capa_juntos.jpg', feito: FEITO,
+    titulo_en: 'Warning signs from your body', cliente_en: 'Gym · Health' },
+  { titulo: 'Hora de mudar de casa',           cliente: 'Corretora de imóveis',         tipo: 'reels',   duracao: '00:37', video: 'videos/video01.mp4', capa: 'videos/capa_video01.jpg', feito: FEITO,
+    titulo_en: 'Time to move house', cliente_en: 'Real estate agency' },
+  { titulo: 'Avaliação antes do tratamento',   cliente: 'Clínica médica · Saúde',       tipo: 'reels',   duracao: '00:29', video: 'videos/monjaro.mp4', capa: 'videos/capa_monjaro.jpg', feito: FEITO,
+    titulo_en: 'Check-up before treatment', cliente_en: 'Medical clinic · Health' }
+];
+const DESTAQUES = 5; // quantos dos primeiros vídeos aparecem no carrossel do topo
+/* ========================================================= */
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+/* Idioma: textos fixos da página ficam em data-t (PT no HTML, EN aqui) */
+const EN = {
+  navTrab: 'Work', navSobre: 'About', navProc: 'Process', orcamento: '<span class="pc">Get a quote</span><span class="cel">Quote</span>',
+  selo: 'Reels &amp; ad editor',
+  h1: 'Short videos that hook viewers <span class="ouro">in the first second.</span>',
+  sub: 'I edit Reels, TikToks and ads for brands and creators. Fast cuts, captions that guide the eye and motion that holds attention until the very end.',
+  verTrab: 'See my work', conversar: "Let's talk", dur: '15 to 60 s',
+  portfolio: 'Portfolio', recentes: 'Recent work', toque: 'Tap or click a video to watch it with sound.',
+  todos: 'All', anuncios: 'Ads',
+  sobre: 'About', quem: "Who's behind the videos?", souo: 'I\'m <span class="ouro">Murillo</span>.',
+  p1: "I'm a video editor, passionate about turning ideas and raw footage into content that grabs attention and connects with the audience.",
+  p2: "I started at 22, editing videos for content creators in different niches. Since then, I've kept sharpening my skills and developing a creative eye for every project.",
+  p3: "I work with tools like Adobe Premiere Pro, After Effects and CapCut, adapting each edit to every client's identity, references and goals.",
+  ferr: 'Tools',
+  fecho: 'You focus on creating. <span class="ouro">I turn your content into a professional video.</span>',
+  como: 'How it works', bruto: 'From raw footage to post',
+  s1: '<h3>Files on Drive</h3><p>You record and share your files through Google Drive, no cutting needed.</p>',
+  s2: '<h3>References</h3><p>We align the goal of the video, the audience and the style references you like.</p>',
+  s3: '<h3>Editing</h3><p>Cuts, captions, zoom, motion and sound effects. If needed, I also create the title and the thumbnail.</p>',
+  s4: '<h3>Final delivery</h3><p>You review, ask for changes and get the video ready to post.</p>',
+  contato: 'Contact', bora: 'Ready for your next <span class="ouro">video?</span>',
+  chama: 'Reach out on whichever channel you prefer and tell me what you need. I reply the same day.',
+  rodape: 'Short-form video editing · Reels &amp; ads'
+};
+const EN_ARIA = {
+  inicio: 'Home', principal: 'Main', formatos: 'Formats', destaque: 'Featured videos', anterior: 'Previous video', proximo: 'Next video',
+  filtrar: 'Filter videos', ferr: 'Tools', fab: 'Chat on WhatsApp', fechar: 'Close'
+};
+const TXT = {
+  pt: { titulo: 'Portfólio Reels e Anúncios', assistir: 'Assistir ', irPara: 'Ir para ', foto: 'Foto do editor', copiar: 'Copiar', copiado: 'Copiado ✓', selecionado: 'Selecionado', abrir: 'Abrir', acao: { 'WhatsApp': 'Conversar', 'Instagram': 'Ver perfil', 'Discord': 'Ver perfil' }, tipo: { reels: 'Reels', anuncio: 'Anúncio' } },
+  en: { titulo: 'Reels & Ads Portfolio', assistir: 'Watch ', irPara: 'Go to ', foto: 'Photo of the editor', copiar: 'Copy', copiado: 'Copied ✓', selecionado: 'Selected', abrir: 'Open', acao: { 'WhatsApp': 'Chat', 'Instagram': 'View profile', 'Discord': 'View profile' }, tipo: { reels: 'Reels', anuncio: 'Ad' } }
+};
+let LANG = 'pt';
+try { if (localStorage.getItem('lang') === 'en') LANG = 'en'; } catch (_) {}
+const T = () => TXT[LANG];
+const tr = (o, k) => (LANG === 'en' && o[k + '_en']) || o[k];
+const trFeito = f => LANG === 'en' ? (FEITO_EN[FEITO.indexOf(f)] || f) : f;
+document.querySelectorAll('[data-t]').forEach(el => el.dataset.pt = el.innerHTML);
+document.querySelectorAll('[data-ta]').forEach(el => el.dataset.ptAria = el.getAttribute('aria-label'));
+
+document.querySelectorAll('[data-marca]').forEach(el => el.innerHTML = esc(MARCA.nome) + '<b>' + esc(MARCA.destaque) + '</b>');
+document.querySelectorAll('[data-marca-texto]').forEach(el => el.textContent = MARCA.nome + ' ' + MARCA.destaque);
+$('#foto').textContent = MARCA.nome.charAt(0);
+const renderFoto = () => { if (FOTO) $('#foto').innerHTML = '<img src="' + esc(FOTO) + '" alt="' + esc(T().foto) + '">'; };
+
+function poster(v, i) {
+  const media = v.video
+    ? '<video src="' + esc(v.video) + '" muted loop playsinline preload="metadata"' + (v.capa ? ' poster="' + esc(v.capa) + '"' : '') + '></video>'
+    : v.capa ? '<img src="' + esc(v.capa) + '" alt="">' : '';
+  const ex = !v.video && !v.capa;
+  return '<span class="poster ' + 'abc'[i % 3] + (ex ? ' ex' : '') + '">' + media +
+    '<span class="tag ' + v.tipo + '">' + T().tipo[v.tipo] + '</span>' +
+    (ex ? '<span class="leg">' + esc(v.legenda[0]) + '<b>' + esc(v.legenda[1]) + '</b></span>' : '') +
+    '<span class="tc">' + esc(v.duracao) + '</span><span class="play" aria-hidden="true"></span></span>';
+}
+
+function hoverPreview(root) {
+  root.querySelectorAll('.poster video').forEach(vd => {
+    const host = vd.closest('.item, .slide');
+    host.addEventListener('mouseenter', () => vd.play().catch(() => {}));
+    host.addEventListener('mouseleave', () => { vd.pause(); vd.currentTime = 0; });
+  });
+}
+
+const feitoHTML = v => (v.feito && v.feito.length) ? '<span class="feito">' + v.feito.map(f => '<span>' + esc(trFeito(f)) + '</span>').join('') + '</span>' : '';
+
+/* Grade + filtros */
+let filtro = 'todos';
+function renderGrid() {
+  const g = $('#grid');
+  g.innerHTML = VIDEOS.map((v, i) => (filtro === 'todos' || v.tipo === filtro)
+    ? '<button class="item" data-i="' + i + '" aria-label="' + esc(T().assistir + tr(v, 'titulo')) + '">' + poster(v, i) +
+      '<span><span class="t3">' + esc(tr(v, 'titulo')) + '</span><span class="cl">' + esc(tr(v, 'cliente')) + '</span>' + feitoHTML(v) + '</span></button>' : '').join('');
+  hoverPreview(g);
+}
+const conta = { todos: VIDEOS.length, reels: VIDEOS.filter(v => v.tipo === 'reels').length, anuncio: VIDEOS.filter(v => v.tipo === 'anuncio').length };
+document.querySelectorAll('.chip').forEach(c => {
+  c.querySelector('small').textContent = conta[c.dataset.f];
+  c.addEventListener('click', () => {
+    filtro = c.dataset.f;
+    document.querySelectorAll('.chip').forEach(x => x.setAttribute('aria-pressed', x === c));
+    renderGrid();
+  });
+});
+$('#grid').addEventListener('click', e => { const b = e.target.closest('.item'); if (b) abrir(+b.dataset.i); });
+
+/* Carrossel */
+const destaques = VIDEOS.slice(0, DESTAQUES);
+let atual = 0;
+function renderStage() {
+  $('#stage').innerHTML = destaques.map((v, i) => '<div class="slide" data-i="' + i + '" role="button" tabindex="0" aria-label="' + esc(tr(v, 'titulo')) + '">' + poster(v, i) + '</div>').join('');
+  $('#dots').innerHTML = destaques.map((v, i) => '<button aria-label="' + esc(T().irPara + tr(v, 'titulo')) + '"></button>').join('');
+  hoverPreview($('#stage'));
+  posicionar();
+}
+function posicionar() {
+  const n = destaques.length;
+  document.querySelectorAll('.slide').forEach((s, i) => {
+    let d = (i - atual + n) % n; if (d > n / 2) d -= n;
+    s.dataset.pos = Math.abs(d) <= 1 ? d : 'x';
+    s.tabIndex = d === 0 ? 0 : -1;
+  });
+  document.querySelectorAll('#dots button').forEach((b, i) => b.setAttribute('aria-current', i === atual));
+}
+const ir = i => { atual = (i + destaques.length) % destaques.length; posicionar(); };
+$('#prev').onclick = () => ir(atual - 1);
+$('#next').onclick = () => ir(atual + 1);
+$('#dots').addEventListener('click', e => { const b = e.target.closest('button'); if (b) ir([...b.parentNode.children].indexOf(b)); });
+$('#stage').addEventListener('click', e => {
+  const s = e.target.closest('.slide'); if (!s) return;
+  s.dataset.pos === '0' ? abrir(+s.dataset.i) : ir(+s.dataset.i);
+});
+$('#stage').addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); abrir(atual); } });
+
+/* Player */
+let ultimoFoco = null, aberto = -1;
+function textosPlayer() {
+  const v = VIDEOS[aberto];
+  $('#vtit').textContent = tr(v, 'titulo');
+  $('#vmeta').textContent = tr(v, 'cliente') + ' · ' + T().tipo[v.tipo] + ' · ' + v.duracao;
+  $('#vfeito').innerHTML = feitoHTML(v);
+}
+function abrir(i) {
+  const v = VIDEOS[i];
+  ultimoFoco = document.activeElement;
+  aberto = i;
+  textosPlayer();
+  $('#vmedia').innerHTML = v.video
+    ? '<video src="' + esc(v.video) + '" controls autoplay playsinline' + (v.capa ? ' poster="' + esc(v.capa) + '"' : '') + '></video>'
+    : '<div class="vazio"><b>Vídeo de exemplo</b>Aqui vai tocar o seu vídeo. Coloque o arquivo .mp4 no campo <code>video</code> da lista VIDEOS.</div>';
+  document.querySelectorAll('.poster video').forEach(vd => vd.pause());
+  document.body.classList.add('vendo');
+  $('#viewer').hidden = false;
+  $('#fechar').focus();
+}
+function fechar() { aberto = -1; document.body.classList.remove('vendo'); $('#viewer').hidden = true; $('#vmedia').innerHTML = ''; ultimoFoco && ultimoFoco.focus(); }
+$('#fechar').onclick = fechar;
+$('#viewer').addEventListener('click', e => { if (e.target.id === 'viewer') fechar(); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && !$('#viewer').hidden) fechar();
+  if ($('#viewer').hidden && document.activeElement.closest && document.activeElement.closest('.show')) {
+    if (e.key === 'ArrowLeft') ir(atual - 1);
+    if (e.key === 'ArrowRight') ir(atual + 1);
+  }
+});
+
+/* Botões que abrem o WhatsApp direto */
+const WHATS = CONTATOS.find(c => c.rotulo === 'WhatsApp');
+const renderWhats = () => { if (WHATS && WHATS.link) document.querySelectorAll('[data-whats]').forEach(a => { a.href = tr(WHATS, 'link'); a.target = '_blank'; a.rel = 'noopener'; }); };
+
+/* Contato */
+const ICONES = {
+  'WhatsApp':  '<path d="M4 20l1.3-3.9A8 8 0 1 1 8 18.8L4 20z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.6-2-.9-.8.8a4 4 0 0 1-2-2l.8-.8-.9-2L9 9.5z"/>',
+  'Instagram': '<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/>',
+  'Discord':   '<path d="M8.6 5.6c-1.6.3-3 .8-4.3 1.6-1.7 2.6-2.3 5.3-2.1 8.4 1.4 1.1 3 1.8 4.6 2.2l1-1.6M15.4 5.6c1.6.3 3 .8 4.3 1.6 1.7 2.6 2.3 5.3 2.1 8.4-1.4 1.1-3 1.8-4.6 2.2l-1-1.6"/><path d="M7.6 16.1c2.9 1.2 5.9 1.2 8.8 0M8.2 7.7c2.5-.8 5.1-.8 7.6 0"/><circle cx="9.3" cy="12.4" r="1.1" fill="currentColor"/><circle cx="14.7" cy="12.4" r="1.1" fill="currentColor"/>',
+  'E-mail':    '<rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7l8 6 8-6"/>'
+};
+function renderCanais() {
+$('#canais').innerHTML = CONTATOS.map((c, i) =>
+  '<div class="canal">' +
+    '<div class="ct-top"><span class="ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (ICONES[c.rotulo] || ICONES['E-mail']) + '</svg></span><span class="eyebrow">' + esc(tr(c, 'rotulo')) + '</span></div>' +
+    '<strong>' + esc(c.valor) + '</strong>' +
+    '<div class="ct-acoes">' +
+      (c.link ? '<a class="ct-btn" href="' + esc(tr(c, 'link')) + '" target="_blank" rel="noopener">' + esc(T().acao[c.rotulo] || T().abrir) + ' <span aria-hidden="true">↗</span></a>' : '') +
+      '<button class="copy" data-i="' + i + '">' + T().copiar + '</button>' +
+    '</div>' +
+  '</div>').join('');
+}
+$('#canais').addEventListener('click', e => {
+  const b = e.target.closest('.copy'); if (!b) return;
+  const txt = CONTATOS[+b.dataset.i].valor;
+  const volta = () => setTimeout(() => { b.textContent = T().copiar; b.classList.remove('ok'); }, 1600);
+  const ok = () => { b.textContent = T().copiado; b.classList.add('ok'); volta(); };
+  const fallback = () => { const r = document.createRange(); r.selectNodeContents(b.closest('.canal').querySelector('strong')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = T().selecionado; volta(); };
+  try { navigator.clipboard.writeText(txt).then(ok, fallback); } catch (_) { fallback(); }
+});
+
+/* Troca de idioma (PT / EN) */
+function aplicarIdioma(l) {
+  LANG = l;
+  try { localStorage.setItem('lang', l); } catch (_) {}
+  document.documentElement.lang = l === 'en' ? 'en' : 'pt-BR';
+  document.title = T().titulo;
+  document.querySelectorAll('[data-t]').forEach(el => el.innerHTML = l === 'en' ? EN[el.dataset.t] : el.dataset.pt);
+  document.querySelectorAll('[data-ta]').forEach(el => el.setAttribute('aria-label', l === 'en' ? EN_ARIA[el.dataset.ta] : el.dataset.ptAria));
+  document.querySelectorAll('.lang button').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === l));
+  renderFoto(); renderGrid(); renderStage(); renderCanais(); renderWhats();
+  if (aberto >= 0) textosPlayer();
+}
+document.querySelectorAll('.lang button').forEach(b => b.addEventListener('click', () => aplicarIdioma(b.dataset.lang)));
+aplicarIdioma(LANG);
+</script>
+</body>
+</html>
